@@ -10,10 +10,18 @@ package modelo;
  * @author Familia
  */
 public class Aluno {
+    public enum Vinculo{
+        ATLETA, ASSOCIADO, ATLETA_ASSOCIADO;
+    }
+    
+    public enum Sexo{
+        MASCULINO, FEMININO;
+    }
+    
     private String nome;
     private long matricula;
     private long cpf;
-    private char sexo;
+    private Sexo sexo;
     private String nascimento;
     private String rh;
     private String alergia;
@@ -23,9 +31,10 @@ public class Aluno {
     private String telefone;
     private String email;
     private String endereco;
-    private String vinculo; //pode mudar para enum
+    private Vinculo vinculo; //pode mudar para enum
     private String emergencia;
 
+    
     public String getNome() {
         return nome;
     }
@@ -48,14 +57,6 @@ public class Aluno {
 
     public void setCpf(long cpf) {
         this.cpf = cpf;
-    }
-
-    public char getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
     }
 
     public String getNascimento() {
@@ -130,14 +131,6 @@ public class Aluno {
         this.endereco = endereco;
     }
 
-    public String getVinculo() {
-        return vinculo;
-    }
-
-    public void setVinculo(String vinculo) {
-        this.vinculo = vinculo;
-    }
-
     public String getEmergencia() {
         return emergencia;
     }
@@ -146,5 +139,20 @@ public class Aluno {
         this.emergencia = emergencia;
     }
     
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public Vinculo getVinculo() {
+        return vinculo;
+    }
+
+    public void setVinculo(Vinculo vinculo) {
+        this.vinculo = vinculo;
+    }
     
 }
