@@ -6,10 +6,8 @@
 package banco_de_dados;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import modelo.Aluno;
 import tabelaDispersao.Hashtable;
 import tabelaDispersao.Item;
@@ -25,28 +23,23 @@ public class BancoPopular {
     
     public BancoPopular(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException{
         arquivo = new File(fileName);
-        
-        if (arquivo.exists()){
-            System.out.println("O arquivo existe");
-            FileInputStream in = new FileInputStream("dados/hashSerial");
-            ObjectInputStream objIn = new ObjectInputStream(in);
-            
-            System.out.println("Carregando Hash");
-            hash = (Hashtable) objIn.readObject();
-            System.out.println("Carreguei Hash");
-            
-        }else{  //Carregar a hash
-            hash = new Hashtable(60);       //Tem que iniciar a hash aqui 
-        }
-        
+        hash = new Hashtable(60);
         arquibin = new myRandomAccessFile(arquivo, "rw");
+        
+        System.out.println("Montando tabela de dispersão");
+        while(arquibin.getFilePointer() < arquibin.length()){
+            Item it = new Item(arquibin.readLong(), arquibin.getFilePointer() - 8);
+            hash.inserir(it);
+            arquibin.skipBytes(768);
+        }
+        System.out.println("Tabela dispersão montada");
     }
     
-    public Aluno buscar(int matricula) throws IOException{
+    public Aluno buscar(long matricula) throws IOException{
         Item item = hash.buscar(matricula);
         if(item != null){
             arquibin.seek(item.getPosicao());
-            return arquibin.lerAluno();
+            return arquibin.readAluno();
         } else{
             return null;
         }
@@ -61,5 +54,23 @@ public class BancoPopular {
         } else{
             return false;
         } 
+    }
+    
+    public boolean remover(long matricula) throws IOException{
+        Item item = hash.buscar(matricula);
+        if(item != null){
+            arquibin.seek(arquibin.length() - 776);         
+            Aluno aluno = arquibin.readAluno();
+            
+            arquibin.seek(item.getPosicao());
+            arquibin.writeAluno(aluno);
+            
+            item = hash.buscar(aluno.getMatricula());
+            item.setPosicao(arquibin.getFilePointer() - 776);
+            
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -29,7 +29,7 @@ public class myRandomAccessFile extends RandomAccessFile{
         return string;
     }
 
-    public Aluno lerAluno() throws IOException {
+    public Aluno readAluno() throws IOException {
         Aluno aluno = new Aluno();
         
         aluno.setMatricula(this.readLong());
@@ -50,6 +50,7 @@ public class myRandomAccessFile extends RandomAccessFile{
         return aluno;
     }
     
+                /*Pesa 776 bytes*/
     public void writeAluno(Aluno aluno) throws IOException{
         while(aluno.getNome().length() < 60){
             aluno.setNome(aluno.getNome() + '\0');

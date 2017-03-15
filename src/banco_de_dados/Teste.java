@@ -6,9 +6,7 @@
 package banco_de_dados;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 /**
  *
@@ -16,11 +14,6 @@ import java.io.ObjectOutputStream;
  */
 public class Teste {
     public static void main(String args[]) throws IOException, FileNotFoundException, ClassNotFoundException{
-        BancoPopular banco = new BancoPopular("database");
-        
-        FileOutputStream out = new FileOutputStream("dados/hashSerial");
-        ObjectOutputStream objOut = new ObjectOutputStream(out);
-        
-        objOut.writeObject(banco.hash);
+        BancoPopular bd = new BancoPopular("database");
     }
 }
