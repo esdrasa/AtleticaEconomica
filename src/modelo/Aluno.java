@@ -10,18 +10,11 @@ package modelo;
  * @author Familia
  */
 public class Aluno {
-    public enum Vinculo{
-        ATLETA, ASSOCIADO, ATLETA_ASSOCIADO;
-    }
-    
-    public enum Sexo{
-        MASCULINO, FEMININO;
-    }
     
     private String nome;
     private long matricula;
     private long cpf;
-    private Sexo sexo;
+    private short sexo;       /*0 = masculino 1 = Feminino*/
     private String nascimento;
     private String rh;
     private String alergia;
@@ -31,7 +24,7 @@ public class Aluno {
     private String telefone;
     private String email;
     private String endereco;
-    private Vinculo vinculo; //pode mudar para enum
+    private short  vinculo;   /* 0 = ATLETA ; 1 = ASSOCIADO; 2 = ATLETA E ASSOCIADO */
     private String emergencia;
 
     
@@ -138,21 +131,22 @@ public class Aluno {
     public void setEmergencia(String emergencia) {
         this.emergencia = emergencia;
     }
-    
-    public Sexo getSexo() {
+
+    public short getSexo() {
         return sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(short sexo) {
         this.sexo = sexo;
     }
 
-    public Vinculo getVinculo() {
+    public short getVinculo() {
         return vinculo;
     }
 
-    public void setVinculo(Vinculo vinculo) {
+    public void setVinculo(short vinculo) {
         this.vinculo = vinculo;
     }
+    
     
 }

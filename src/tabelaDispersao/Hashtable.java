@@ -5,15 +5,16 @@
  */
 package tabelaDispersao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Familia
  */
-public class Hashtable{
-    private int compartimentos;
-    private ArrayList<Item> tabela[];
+public class Hashtable implements Serializable{
+    private final int compartimentos;
+    private final ArrayList<Item> tabela[];
     
     public Hashtable(int compartimentos){
         this.compartimentos = compartimentos;
