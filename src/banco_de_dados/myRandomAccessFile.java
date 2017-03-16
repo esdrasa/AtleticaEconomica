@@ -52,41 +52,52 @@ public class myRandomAccessFile extends RandomAccessFile{
     
                 /*Pesa 776 bytes*/
     public void writeAluno(Aluno aluno) throws IOException{
+        System.out.println("T5");
         while(aluno.getNome().length() < 60){
             aluno.setNome(aluno.getNome() + '\0');
         }
-        
+        System.out.println("T5.1");
         while(aluno.getRh().length() < 3){
             aluno.setRh(aluno.getRh() + '\0');
         }
-        
+        System.out.println("T5;2");
         while(aluno.getAlergia().length() < 60){
             aluno.setAlergia(aluno.getAlergia() + '\0');
         }
-        
+        System.out.println("T5.3");
         while(aluno.getMedicacao().length() < 50){
             aluno.setMedicacao(aluno.getMedicacao() + '\0');
         }
-        
+        System.out.println("T5.4");
         while(aluno.getCelular().length() < 9){
             aluno.setCelular(aluno.getCelular() + '\0');
         }
-        
+        System.out.println("T5.5");
+        while(aluno.getTelefone().length() < 8){
+            aluno.setTelefone(aluno.getCelular() + '\0');
+        }
+        System.out.println("T5.6");
+        while(aluno.getNascimento().length() < 8){
+            aluno.setNascimento(aluno.getNascimento() + '\0');
+        }
+        System.out.println("T5.7");
         while(aluno.getEmail().length() < 60){
             aluno.setEmail(aluno.getEmail() + '\0');
         }
-        
+        System.out.println("T5.8");
         while(aluno.getEndereco().length() < 60){
             aluno.setEndereco(aluno.getEndereco() + '\0');
         }
-        
+        System.out.println("T5.9");
         while(aluno.getEmergencia().length() < 60){
             aluno.setEmergencia(aluno.getEmergencia() + '\0');
         }
+        System.out.println("T6");
         
         this.seek(this.length());
         this.writeLong(aluno.getMatricula());
         this.writeLong(aluno.getCpf());
+        System.out.println("T7");
         this.writeShort(aluno.getSexo());
         this.writeShort(aluno.getVinculo());
         this.writeChars(aluno.getNome());
@@ -95,9 +106,11 @@ public class myRandomAccessFile extends RandomAccessFile{
         this.writeChars(aluno.getAlergia());
         this.writeChars(aluno.getMedicacao());
         this.writeChars(aluno.getCelular());
+        System.out.println("T8");
         this.writeChars(aluno.getTelefone());
         this.writeChars(aluno.getEmail());
         this.writeChars(aluno.getEndereco());
         this.writeChars(aluno.getEmergencia());
+        System.out.println("T9");
     }
 }

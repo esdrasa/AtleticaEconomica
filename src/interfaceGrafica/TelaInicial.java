@@ -5,6 +5,12 @@
  */
 package interfaceGrafica;
 
+import banco_de_dados.BancoPopular;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Familia
@@ -14,8 +20,11 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {
+    BancoPopular banco;
+    
+    public TelaInicial(BancoPopular banco) throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
+        this.banco = banco;
     }
 
     /**
@@ -93,8 +102,14 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void inserirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirButtonActionPerformed
         // TODO add your handling code here:
-        System.out.println("Apertou o botão buscar!");
-        new TelaInserirAluno().setVisible(true);
+        this.setVisible(false);
+        try {
+            new TelaInserirAluno(this.banco).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_inserirButtonActionPerformed
 
     /**
@@ -127,7 +142,13 @@ public class TelaInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicial().setVisible(true);
+                try {
+                    new TelaInicial(new BancoPopular("database")).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

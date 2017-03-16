@@ -46,12 +46,17 @@ public class BancoPopular {
     }
     
     public boolean inserir(Aluno aluno) throws IOException{
+        System.out.println("T1");
        Item item = hash.buscar(aluno.getMatricula());
+       System.out.println("T2");
         if(item == null){
+            System.out.println("T3");
             arquibin.seek(arquibin.length());
+            System.out.println("T4");
             arquibin.writeAluno(aluno);
             return true;
         } else{
+            System.out.println("T3.1");
             return false;
         } 
     }

@@ -12,20 +12,20 @@ package modelo;
  */
 public class Aluno {
     
-    private String nome;
-    private long matricula;
+    private String nome; 
+    private long matricula; 
     private long cpf;
-    private short sexo;       /*0 = masculino 1 = Feminino*/
-    private String nascimento;
-    private String rh;
-    private String alergia;
-    private String doença;
+    private short sexo;       /*0 = masculino 1 = Feminino*/ 
+    private String nascimento; 
+    private String rh; 
+    private String alergia; 
+    private String doença; 
     private String medicacao;
-    private String celular;
-    private String telefone;
-    private String email;
-    private String endereco;
-    private short  vinculo;   /* 0 = ATLETA ; 1 = ASSOCIADO; 2 = ATLETA E ASSOCIADO */
+    private String celular; 
+    private String telefone; 
+    private String email; 
+    private String endereco; 
+    private short  vinculo;   /* 0 = ASSOCIADO ; 1 = ATLETA; 2 = ATLETA E ASSOCIADO */
     private String emergencia;
 
     

@@ -54,7 +54,7 @@ public class AtleticaMembershipCard
         //Definindo a string que representa o sexo do Aluno
         String studentSex;
         
-        if(student.getSexo() == Aluno.Sexo.FEMININO)
+        if(student.getSexo() == 1)
         {
             studentSex = "F";
         }
@@ -68,10 +68,10 @@ public class AtleticaMembershipCard
         
         switch(student.getVinculo())
         {
-            case ASSOCIADO:
+            case 0:
                 studentAssociation = "Associado";
                 break;
-            case ATLETA:
+            case 1:
                 studentAssociation = "Atleta";
                 break;
             default:
