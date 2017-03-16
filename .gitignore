@@ -1,1 +1,6 @@
-/build/
+.gitignore
+database
+nbproject/private/private.xml
+
+
+
