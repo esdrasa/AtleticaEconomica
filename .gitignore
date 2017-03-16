@@ -1,2 +1,6 @@
 .gitignore
-database*
+database
+nbproject/private/private.xml
+
+
+
