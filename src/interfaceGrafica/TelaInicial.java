@@ -6,7 +6,6 @@
 package interfaceGrafica;
 
 import banco_de_dados.BancoPopular;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,12 +16,12 @@ import java.util.logging.Logger;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
+    private BancoPopular banco;
+
     /**
-     * Creates new form TelaInicial
+     * Creates new form TelaInicio
      */
-    BancoPopular banco;
-    
-    public TelaInicial(BancoPopular banco) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public TelaInicial(BancoPopular banco) {
         initComponents();
         this.banco = banco;
     }
@@ -37,65 +36,45 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         inserirButton = new javax.swing.JButton();
-        removerButton = new javax.swing.JButton();
         buscarButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        removerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        inserirButton.setText("Inserir Aluno");
+        inserirButton.setText("inserir");
         inserirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inserirButtonActionPerformed(evt);
             }
         });
 
-        removerButton.setText("Remover Aluno");
+        buscarButton.setText("buscar");
 
-        buscarButton.setText("Buscar Aluno");
-
-        jLabel1.setFont(new java.awt.Font("Caviar Dreams", 1, 24)); // NOI18N
-        jLabel1.setText("Atlética de Economia CardMaker");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/aaa.png"))); // NOI18N
+        removerButton.setText("remover");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(buscarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inserirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(removerButton)
+                    .addComponent(buscarButton)
+                    .addComponent(inserirButton))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addComponent(inserirButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buscarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removerButton)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("Atlética Econimia CardMaker");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,6 +117,7 @@ public class TelaInicial extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -156,8 +136,6 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
     private javax.swing.JButton inserirButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton removerButton;
     // End of variables declaration//GEN-END:variables
 }
