@@ -478,13 +478,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        try {
-            new TelaInicial(this.banco).setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new TelaInicial(this.banco).setVisible(true);
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void textFieldEmergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEmergenciaActionPerformed
