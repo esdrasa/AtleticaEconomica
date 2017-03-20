@@ -149,5 +149,10 @@ public class Aluno {
         this.vinculo = vinculo;
     }
     
+    public void exibirImportante(){
+        System.out.println("Nome: " + this.getNome() + "\n"
+                + "Matricula: " + this.getMatricula() + "\n"
+                + "CPF: " + this.getCpf());
+    }
     
 }

@@ -74,7 +74,7 @@ public class myRandomAccessFile extends RandomAccessFile{
         }
         System.out.println("T5.5");
         while(aluno.getTelefone().length() < 8){
-            aluno.setTelefone(aluno.getCelular() + '\0');
+            aluno.setTelefone(aluno.getTelefone() + '\0');
         }
         System.out.println("T5.6");
         while(aluno.getNascimento().length() < 8){
@@ -92,12 +92,12 @@ public class myRandomAccessFile extends RandomAccessFile{
         while(aluno.getEmergencia().length() < 60){
             aluno.setEmergencia(aluno.getEmergencia() + '\0');
         }
+        
         System.out.println("T6");
         
         this.seek(this.length());
         this.writeLong(aluno.getMatricula());
         this.writeLong(aluno.getCpf());
-        System.out.println("T7");
         this.writeShort(aluno.getSexo());
         this.writeShort(aluno.getVinculo());
         this.writeChars(aluno.getNome());
@@ -106,7 +106,6 @@ public class myRandomAccessFile extends RandomAccessFile{
         this.writeChars(aluno.getAlergia());
         this.writeChars(aluno.getMedicacao());
         this.writeChars(aluno.getCelular());
-        System.out.println("T8");
         this.writeChars(aluno.getTelefone());
         this.writeChars(aluno.getEmail());
         this.writeChars(aluno.getEndereco());

@@ -46,7 +46,7 @@ public class BancoPopular {
     }
     
     public boolean inserir(Aluno aluno) throws IOException{
-        System.out.println("T1");
+       System.out.println("T1");
        Item item = hash.buscar(aluno.getMatricula());
        System.out.println("T2");
         if(item == null){
@@ -54,6 +54,7 @@ public class BancoPopular {
             arquibin.seek(arquibin.length());
             System.out.println("T4");
             arquibin.writeAluno(aluno);
+            hash.inserir(new Item(aluno.getMatricula(), arquibin.length() -  776));
             return true;
         } else{
             System.out.println("T3.1");
@@ -64,15 +65,23 @@ public class BancoPopular {
     public boolean remover(long matricula) throws IOException{
         Item item = hash.buscar(matricula);
         if(item != null){
-            arquibin.seek(arquibin.length() - 776);         
-            Aluno aluno = arquibin.readAluno();
-            
-            arquibin.seek(item.getPosicao());
-            arquibin.writeAluno(aluno);
-            
-            item = hash.buscar(aluno.getMatricula());
-            item.setPosicao(arquibin.getFilePointer() - 776);
-            
+            hash.remover(item.getMatricula());
+            if(arquibin.length() == 776){
+            /*So tem 1 elemento no arquivo*/
+                arquibin.setLength(0);
+            }else if(true){
+            /*O elemento é o ultimo*/
+                arquibin.setLength(arquibin.length() - 776);
+            }else{
+                arquibin.seek(arquibin.length() - 776);         
+                Aluno aluno = arquibin.readAluno();
+
+                arquibin.seek(item.getPosicao());
+                arquibin.writeAluno(aluno);
+
+                item = hash.buscar(aluno.getMatricula());
+                item.setPosicao(arquibin.getFilePointer() - 776);
+            }
             return true;
         }else{
             return false;

@@ -9,6 +9,7 @@ import banco_de_dados.BancoPopular;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,9 +39,10 @@ public class TelaInicial extends javax.swing.JFrame {
         inserirButton = new javax.swing.JButton();
         buscarButton = new javax.swing.JButton();
         removerButton = new javax.swing.JButton();
-        editarButton = new javax.swing.JButton();
+        gerarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Atletica de Economia Card Maker");
 
         inserirButton.setText("Inserir Aluno");
         inserirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -50,10 +52,20 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         buscarButton.setText("Busca Aluno");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         removerButton.setText("Remover Aluno");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerButtonActionPerformed(evt);
+            }
+        });
 
-        editarButton.setText("Editar Aluno");
+        gerarButton.setText("Gerar carteirinha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,9 +77,12 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(removerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buscarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(inserirButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                    .addComponent(gerarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buscarButton, gerarButton, inserirButton, removerButton});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -78,7 +93,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editarButton)
+                .addComponent(gerarButton)
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
@@ -95,6 +110,26 @@ public class TelaInicial extends javax.swing.JFrame {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_inserirButtonActionPerformed
+
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
+        // TODO add your handling code here:
+        long matricula = Long.parseLong(JOptionPane.showInputDialog("Digite a matricula:"));
+        
+        try {
+            if(banco.remover(matricula)){
+                JOptionPane.showMessageDialog(this.getContentPane(), "Aluno removido");
+            }else{
+                JOptionPane.showMessageDialog(this.getContentPane(), "Aluno não está no banco de dados");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_removerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,7 +173,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
-    private javax.swing.JButton editarButton;
+    private javax.swing.JButton gerarButton;
     private javax.swing.JButton inserirButton;
     private javax.swing.JButton removerButton;
     // End of variables declaration//GEN-END:variables
