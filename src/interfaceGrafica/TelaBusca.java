@@ -5,17 +5,44 @@
  */
 package interfaceGrafica;
 
+import banco_de_dados.BancoPopular;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Aluno;
+
 /**
  *
  * @author Familia
  */
 public class TelaBusca extends javax.swing.JFrame {
 
+    private final BancoPopular banco;
+    private final Aluno aluno;
+    private final long posicao;
+
     /**
      * Creates new form TelaBusca
      */
-    public TelaBusca() {
+    public TelaBusca(BancoPopular banco, Aluno aluno, long posicao) {
         initComponents();
+        this.banco = banco;
+        this.aluno = aluno;
+        this.posicao = posicao;
+        
+        textFieldNome.setText(aluno.getNome(true));
+        matriculaLabel.setText(Long.toString(aluno.getMatricula()));
+        textFieldCPF.setText(Long.toString(aluno.getCpf()));
+        textFieldAlergia.setText(aluno.getAlergia(true));
+        textFieldCelular.setText(aluno.getCelular(true));
+        textFieldDoenca.setText(aluno.getDoença(true));
+        textFieldEmail.setText(aluno.getEmail(true));
+        textFieldEmergencia.setText(aluno.getEmergencia(true));
+        textFieldEndereco.setText(aluno.getEndereco(true));
+        textFieldMedicacao.setText(aluno.getMedicacao(true));
+        textFieldNascimento.setText(aluno.getNascimento(true));
+        textFieldTelefone.setText(aluno.getTelefone(true));
     }
 
     /**
@@ -27,26 +54,484 @@ public class TelaBusca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelEndereco = new javax.swing.JLabel();
+        labelAlergia = new javax.swing.JLabel();
+        textFieldAlergia = new javax.swing.JTextField();
+        labelDoenca = new javax.swing.JLabel();
+        textFieldDoenca = new javax.swing.JTextField();
+        labelMedicacao = new javax.swing.JLabel();
+        textFieldMedicacao = new javax.swing.JTextField();
+        labelVinculo = new javax.swing.JLabel();
+        comboBoxVinculo = new javax.swing.JComboBox<>();
+        labelSexo = new javax.swing.JLabel();
+        labelEmergencia = new javax.swing.JLabel();
+        labelRH = new javax.swing.JLabel();
+        textFieldEmergencia = new javax.swing.JTextField();
+        comboBoxRH = new javax.swing.JComboBox<>();
+        labelNascimento = new javax.swing.JLabel();
+        textFieldNascimento = new javax.swing.JTextField();
+        labelTelefone = new javax.swing.JLabel();
+        textFieldCelular = new javax.swing.JTextField();
+        labelCelular = new javax.swing.JLabel();
+        textFieldTelefone = new javax.swing.JTextField();
+        labelEmail = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
+        textFieldCPF = new javax.swing.JTextField();
+        labelCPF = new javax.swing.JLabel();
+        labelMatricula = new javax.swing.JLabel();
+        textFieldNome = new javax.swing.JTextField();
+        comboBoxSexo = new javax.swing.JComboBox<>();
+        textFieldEmail = new javax.swing.JTextField();
+        textFieldEndereco = new javax.swing.JTextField();
+        salvarButton = new javax.swing.JButton();
+        voltarButton = new javax.swing.JButton();
+        matriculaLabel = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelEndereco.setText("Endereço:");
+
+        labelAlergia.setText("Alergia:");
+
+        textFieldAlergia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldAlergiaActionPerformed(evt);
+            }
+        });
+
+        labelDoenca.setText("Doença:");
+
+        textFieldDoenca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldDoencaActionPerformed(evt);
+            }
+        });
+
+        labelMedicacao.setText("Medicaçao:");
+
+        textFieldMedicacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldMedicacaoActionPerformed(evt);
+            }
+        });
+
+        labelVinculo.setText("Vínculo:");
+
+        comboBoxVinculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASSOCIADO", "ATLETA", "ATLETA ASSOCIADO" }));
+        comboBoxVinculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxVinculoActionPerformed(evt);
+            }
+        });
+
+        labelSexo.setText("Sexo:");
+
+        labelEmergencia.setText("Emergência: ");
+
+        labelRH.setText("RH:");
+
+        textFieldEmergencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldEmergenciaActionPerformed(evt);
+            }
+        });
+
+        comboBoxRH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-", "N", " " }));
+        comboBoxRH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxRHActionPerformed(evt);
+            }
+        });
+
+        labelNascimento.setText("Data de nascimento:");
+
+        textFieldNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNascimentoActionPerformed(evt);
+            }
+        });
+
+        labelTelefone.setText("Telefone:");
+
+        textFieldCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCelularActionPerformed(evt);
+            }
+        });
+
+        labelCelular.setText("Celular:");
+
+        textFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldTelefoneActionPerformed(evt);
+            }
+        });
+
+        labelEmail.setText("Email:");
+
+        labelNome.setText("Nome:");
+
+        textFieldCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldCPFActionPerformed(evt);
+            }
+        });
+
+        labelCPF.setText("CPF:");
+
+        labelMatricula.setText("Matrícula:");
+
+        textFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNomeActionPerformed(evt);
+            }
+        });
+
+        comboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        comboBoxSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxSexoActionPerformed(evt);
+            }
+        });
+
+        textFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldEmailActionPerformed(evt);
+            }
+        });
+
+        textFieldEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldEnderecoActionPerformed(evt);
+            }
+        });
+
+        salvarButton.setText("Salvar");
+        salvarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarButtonActionPerformed(evt);
+            }
+        });
+
+        voltarButton.setText("Voltar");
+        voltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(matriculaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salvarButton))
+                .addGap(18, 18, 18)
+                .addComponent(voltarButton)
+                .addContainerGap(182, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelEmail)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(labelEmergencia)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldEmergencia))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelMedicacao)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldMedicacao))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelVinculo)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(comboBoxVinculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelAlergia)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(textFieldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(labelDoenca)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textFieldDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelEndereco)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelTelefone)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(labelCelular)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelNascimento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelMatricula)
+                                            .addComponent(labelNome)
+                                            .addComponent(labelSexo))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(68, 68, 68)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(labelRH)
+                                                        .addGap(16, 16, 16)
+                                                        .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(labelCPF)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(matriculaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salvarButton)
+                    .addComponent(voltarButton))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNome)
+                        .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(29, 29, 29)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelMatricula)
+                        .addComponent(labelCPF)
+                        .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(24, 24, 24)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelSexo)
+                        .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelRH)
+                        .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNascimento)
+                        .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(25, 25, 25)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelTelefone)
+                        .addComponent(textFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelCelular)
+                        .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelEmail)
+                        .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelEndereco)
+                        .addComponent(textFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(24, 24, 24)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelAlergia)
+                        .addComponent(textFieldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDoenca)
+                        .addComponent(textFieldDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelMedicacao)
+                        .addComponent(textFieldMedicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelEmergencia)
+                        .addComponent(textFieldEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(26, 26, 26)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelVinculo)
+                        .addComponent(comboBoxVinculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(68, Short.MAX_VALUE)))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelMatricula, matriculaLabel});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textFieldAlergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAlergiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldAlergiaActionPerformed
+
+    private void textFieldDoencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDoencaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldDoencaActionPerformed
+
+    private void textFieldMedicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMedicacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldMedicacaoActionPerformed
+
+    private void comboBoxVinculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVinculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxVinculoActionPerformed
+
+    private void textFieldEmergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEmergenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldEmergenciaActionPerformed
+
+    private void comboBoxRHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxRHActionPerformed
+
+    private void textFieldNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldNascimentoActionPerformed
+
+    private void textFieldCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCelularActionPerformed
+
+    private void textFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldTelefoneActionPerformed
+
+    private void textFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldCPFActionPerformed
+
+    private void textFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldNomeActionPerformed
+
+    private void comboBoxSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSexoActionPerformed
+
+    private void textFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldEmailActionPerformed
+
+    private void textFieldEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldEnderecoActionPerformed
+
+    private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("lendo o aluno");
+        aluno.setNome(textFieldNome.getText());
+        aluno.setMatricula(Long.parseLong(matriculaLabel.getText()));
+        aluno.setCpf(Long.parseLong(textFieldCPF.getText()));
+        aluno.setCelular(textFieldCelular.getText());
+        aluno.setTelefone(textFieldTelefone.getText());
+        aluno.setNascimento(textFieldNascimento.getText());
+        aluno.setEmail(textFieldEmail.getText());
+        aluno.setEndereco(textFieldEndereco.getText());
+        aluno.setDoença(textFieldDoenca.getText());
+        aluno.setMedicacao(textFieldMedicacao.getText());
+        aluno.setAlergia(textFieldAlergia.getText());
+        aluno.setEmergencia(textFieldEmergencia.getText());
+        
+        switch(comboBoxRH.getSelectedIndex()){
+            case 0:
+                aluno.setRh("A+");
+            break;
+            case 1:
+                aluno.setRh("B+");
+            break;
+            case 2:
+                aluno.setRh("AB+");
+            break;
+            case 3:
+                aluno.setRh("O+");
+            break;
+            case 4:
+                aluno.setRh("A-");
+            break;
+            case 5:
+                aluno.setRh("B-");
+            break;
+            case 6:
+                aluno.setRh("AB-");
+            break;
+            case 7:
+                aluno.setRh("O-");
+            break;
+            case 8:
+                aluno.setRh("N");
+            break;
+        }
+        
+        aluno.setSexo((short)comboBoxSexo.getSelectedIndex());
+        aluno.setVinculo((short)comboBoxVinculo.getSelectedIndex());
+        System.out.println("li o aluno");
+        aluno.exibirImportante();
+        
+        try {
+            banco.inserir(aluno, this.posicao);
+            JOptionPane.showMessageDialog(this.getContentPane(), "Cadastro alterado");
+            
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_salvarButtonActionPerformed
+
+    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new TelaInicial(this.banco).setVisible(true);
+    }//GEN-LAST:event_voltarButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboBoxRH;
+    private javax.swing.JComboBox<String> comboBoxSexo;
+    private javax.swing.JComboBox<String> comboBoxVinculo;
+    private javax.swing.JLabel labelAlergia;
+    private javax.swing.JLabel labelCPF;
+    private javax.swing.JLabel labelCelular;
+    private javax.swing.JLabel labelDoenca;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelEmergencia;
+    private javax.swing.JLabel labelEndereco;
+    private javax.swing.JLabel labelMatricula;
+    private javax.swing.JLabel labelMedicacao;
+    private javax.swing.JLabel labelNascimento;
+    private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelRH;
+    private javax.swing.JLabel labelSexo;
+    private javax.swing.JLabel labelTelefone;
+    private javax.swing.JLabel labelVinculo;
+    private javax.swing.JLabel matriculaLabel;
+    private javax.swing.JButton salvarButton;
+    private javax.swing.JTextField textFieldAlergia;
+    private javax.swing.JTextField textFieldCPF;
+    private javax.swing.JTextField textFieldCelular;
+    private javax.swing.JTextField textFieldDoenca;
+    private javax.swing.JTextField textFieldEmail;
+    private javax.swing.JTextField textFieldEmergencia;
+    private javax.swing.JTextField textFieldEndereco;
+    private javax.swing.JTextField textFieldMedicacao;
+    private javax.swing.JTextField textFieldNascimento;
+    private javax.swing.JTextField textFieldNome;
+    private javax.swing.JTextField textFieldTelefone;
+    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,70 +46,84 @@ public class myRandomAccessFile extends RandomAccessFile{
         aluno.setEmail(this.readString(60));
         aluno.setEndereco(this.readString(60));
         aluno.setEmergencia(this.readString(60));
+        aluno.setDoença(this.readString(50));
 
         return aluno;
     }
     
-                /*Pesa 776 bytes*/
+                /*Pesa 876 bytes*/
     public void writeAluno(Aluno aluno) throws IOException{
         System.out.println("T5");
-        while(aluno.getNome().length() < 60){
-            aluno.setNome(aluno.getNome() + '\0');
+        while(aluno.getNome(false).length() < 60){
+            aluno.setNome(aluno.getNome(false) + '\0');
         }
         System.out.println("T5.1");
-        while(aluno.getRh().length() < 3){
-            aluno.setRh(aluno.getRh() + '\0');
+        while(aluno.getRh(false).length() < 3){
+            aluno.setRh(aluno.getRh(false) + '\0');
         }
         System.out.println("T5;2");
-        while(aluno.getAlergia().length() < 60){
-            aluno.setAlergia(aluno.getAlergia() + '\0');
+        while(aluno.getAlergia(false).length() < 60){
+            aluno.setAlergia(aluno.getAlergia(false) + '\0');
         }
         System.out.println("T5.3");
-        while(aluno.getMedicacao().length() < 50){
-            aluno.setMedicacao(aluno.getMedicacao() + '\0');
+        while(aluno.getMedicacao(false).length() < 50){
+            aluno.setMedicacao(aluno.getMedicacao(false) + '\0');
         }
         System.out.println("T5.4");
-        while(aluno.getCelular().length() < 9){
-            aluno.setCelular(aluno.getCelular() + '\0');
+        while(aluno.getCelular(false).length() < 9){
+            aluno.setCelular(aluno.getCelular(false) + '\0');
         }
         System.out.println("T5.5");
-        while(aluno.getTelefone().length() < 8){
-            aluno.setTelefone(aluno.getTelefone() + '\0');
+        while(aluno.getTelefone(false).length() < 8){
+            aluno.setTelefone(aluno.getTelefone(false) + '\0');
         }
         System.out.println("T5.6");
-        while(aluno.getNascimento().length() < 8){
-            aluno.setNascimento(aluno.getNascimento() + '\0');
+        while(aluno.getNascimento(false).length() < 8){
+            aluno.setNascimento(aluno.getNascimento(false) + '\0');
         }
         System.out.println("T5.7");
-        while(aluno.getEmail().length() < 60){
-            aluno.setEmail(aluno.getEmail() + '\0');
+        while(aluno.getEmail(false).length() < 60){
+            aluno.setEmail(aluno.getEmail(false) + '\0');
         }
         System.out.println("T5.8");
-        while(aluno.getEndereco().length() < 60){
-            aluno.setEndereco(aluno.getEndereco() + '\0');
+        while(aluno.getEndereco(false).length() < 60){
+            aluno.setEndereco(aluno.getEndereco(false) + '\0');
         }
         System.out.println("T5.9");
-        while(aluno.getEmergencia().length() < 60){
-            aluno.setEmergencia(aluno.getEmergencia() + '\0');
+        while(aluno.getEmergencia(false).length() < 60){
+            aluno.setEmergencia(aluno.getEmergencia(false) + '\0');
+        }
+        
+        while(aluno.getDoença(false).length() < 50){
+            aluno.setDoença(aluno.getDoença(false) + '\0');
         }
         
         System.out.println("T6");
         
-        this.seek(this.length());
         this.writeLong(aluno.getMatricula());
         this.writeLong(aluno.getCpf());
         this.writeShort(aluno.getSexo());
         this.writeShort(aluno.getVinculo());
-        this.writeChars(aluno.getNome());
-        this.writeChars(aluno.getNascimento());
-        this.writeChars(aluno.getRh());
-        this.writeChars(aluno.getAlergia());
-        this.writeChars(aluno.getMedicacao());
-        this.writeChars(aluno.getCelular());
-        this.writeChars(aluno.getTelefone());
-        this.writeChars(aluno.getEmail());
-        this.writeChars(aluno.getEndereco());
-        this.writeChars(aluno.getEmergencia());
+        
+        System.out.println("Escrevendo nome: " + aluno.getNome(false));
+        
+        
+        this.writeChars(aluno.getNome(false));
+        
+        this.seek(this.getFilePointer() - 120);
+        System.out.println("Nome escrito: " + this.readString(60));
+        
+        
+        this.writeChars(aluno.getNascimento(false));
+        this.writeChars(aluno.getRh(false));
+        this.writeChars(aluno.getAlergia(false));
+        this.writeChars(aluno.getMedicacao(false));
+        this.writeChars(aluno.getCelular(false));
+        this.writeChars(aluno.getTelefone(false));
+        this.writeChars(aluno.getEmail(false));
+        this.writeChars(aluno.getEndereco(false));
+        this.writeChars(aluno.getEmergencia(false));
+        this.writeChars(aluno.getDoença(false));
         System.out.println("T9");
     }
 }

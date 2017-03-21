@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Aluno;
 
 /**
  *
@@ -113,6 +114,24 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
         // TODO add your handling code here:
+        String str = JOptionPane.showInputDialog("Digite a matricula do aluno:");
+        if(str != null){
+            long matricula = Long.parseLong(str);
+            Aluno aluno;
+
+            try {
+                aluno = banco.buscar(matricula);
+
+                if(aluno != null){
+                    new TelaBusca(banco, aluno, banco.buscarPosicao(matricula)).setVisible(true);
+                    this.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(this.getContentPane(), "Aluno não encontrado");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
     }//GEN-LAST:event_buscarButtonActionPerformed
 
