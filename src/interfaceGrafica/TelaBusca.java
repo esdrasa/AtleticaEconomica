@@ -43,6 +43,29 @@ public class TelaBusca extends javax.swing.JFrame {
         textFieldMedicacao.setText(aluno.getMedicacao(true));
         textFieldNascimento.setText(aluno.getNascimento(true));
         textFieldTelefone.setText(aluno.getTelefone(true));
+        comboBoxSexo.setSelectedIndex(aluno.getSexo());
+        comboBoxVinculo.setSelectedIndex(aluno.getVinculo());
+        
+        String rh = aluno.getRh(true);
+        if(rh.equals("A+")){
+            comboBoxRH.setSelectedIndex(0);
+        }else if(rh.equals("B+")){
+            comboBoxRH.setSelectedIndex(1);
+        }else if(rh.equals("AB+")){
+            comboBoxRH.setSelectedIndex(2);
+        }else if(rh.equals("O+")){
+            comboBoxRH.setSelectedIndex(3);
+        }else if(rh.equals("A-")){
+            comboBoxRH.setSelectedIndex(4);
+        }else if(rh.equals("B-")){
+            comboBoxRH.setSelectedIndex(5);
+        }else if(rh.equals("AB-")){
+            comboBoxRH.setSelectedIndex(6);
+        }else if(rh.equals("O-")){
+            comboBoxRH.setSelectedIndex(7);
+        }else if(rh.equals("N")){
+            comboBoxRH.setSelectedIndex(8);
+        }
     }
 
     /**
