@@ -436,7 +436,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         aluno.exibirImportante();
         
         //Tratamento  de erros do limite do campo excedido
-        ArrayList<String> errosEntrada  = new ArrayList<String>();
+        ArrayList<String> errosEntrada  = new ArrayList<>();
         
         if (textFieldNome.getText().length() > 60){
             errosEntrada.add("Tamanho máximo do campo Nome excedido!");
@@ -467,6 +467,12 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         }
         if(textFieldDoenca.getText().length() > 60){
             errosEntrada.add("Tamanho máximo do campo Doença excedido!");
+        }
+        if(textFieldCPF.getText().length() > 11){
+            errosEntrada.add("Tamanho máximo do campo CPF excedido!");
+        }
+        if(textFieldMatricula.getText().length() > 10){
+            errosEntrada.add("Tamanho máximo do campo Matrícula excedido!");
         }
         
         if(errosEntrada.size() > 0){
