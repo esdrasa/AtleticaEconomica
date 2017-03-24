@@ -89,6 +89,11 @@ public class AtleticaMembershipCard
                             +   "-"
                             +   studentCPFNoFormat.substring(9);
         
+        //Gera uma string com a data de nascimento formatada
+        String studentNascimento = student.getNascimento(true).substring(0, 2) 
+                                   + "\\" + student.getNascimento(true).substring(2, 5)
+                                   + "\\" + student.getNascimento(true).substring(5);
+        
         //Separa as alergias/doenças/medicações por vírgulas
         String[] allergies = student.getAlergia(true).split("\\s*,\\s*");
         String[] diseases = student.getDoença(true).split("\\s*,\\s*");
@@ -100,7 +105,7 @@ public class AtleticaMembershipCard
         int yCorrection = fontMetrics.getHeight() / 2;
         
         g2d.drawString(student.getNome(true), NAME_X, yCorrection + NAME_Y);
-        g2d.drawString(student.getNascimento(true), BDAY_X, yCorrection + BDAY_Y);
+        g2d.drawString(studentNascimento, BDAY_X, yCorrection + BDAY_Y);
         g2d.drawString(studentSex, SEX_X, yCorrection + SEX_Y);
         g2d.drawString(studentCPF, CPF_X, yCorrection + CPF_Y);
         g2d.drawString(studentAssociation, ASSOC_X, yCorrection + ASSOC_Y);

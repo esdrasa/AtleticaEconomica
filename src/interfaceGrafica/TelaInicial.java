@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Aluno;
+import modelo.AtleticaMembershipCard;
 
 /**
  *
@@ -70,6 +71,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         gerarButton.setText("Gerar carteirinha");
+        gerarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/aaa.png"))); // NOI18N
 
@@ -178,6 +184,29 @@ public class TelaInicial extends javax.swing.JFrame {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_removerButtonActionPerformed
+
+    private void gerarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarButtonActionPerformed
+        // TODO add your handling code here:
+        String str = JOptionPane.showInputDialog("Digite a matricula do aluno:");
+        if(str != null){
+            long matricula = Long.parseLong(str);
+            Aluno aluno;
+
+            try {
+                aluno = banco.buscar(matricula);
+
+                if(aluno != null){
+                    new AtleticaMembershipCard().generateID(aluno);
+                    JOptionPane.showMessageDialog(this.getContentPane(), "Carteirinha salva");
+                }else{
+                    JOptionPane.showMessageDialog(this.getContentPane(), "Aluno não encontrado");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_gerarButtonActionPerformed
 
     /**
      * @param args the command line arguments
