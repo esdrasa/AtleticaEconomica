@@ -433,7 +433,6 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         
         aluno.setSexo((short)comboBoxSexo.getSelectedIndex());
         aluno.setVinculo((short)comboBoxVinculo.getSelectedIndex());
-        System.out.println("li o aluno");
         aluno.exibirImportante();
         
         //Tratamento  de erros do limite do campo excedido
@@ -470,7 +469,12 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             errosEntrada.add("Tamanho máximo do campo Doença excedido!");
         }
         
-        try {
+        if(errosEntrada.size() > 0){
+            for (int i = 0; i < errosEntrada.size(); i++) {
+                JOptionPane.showMessageDialog(this.getContentPane(), errosEntrada.get(i), "Erro", JOptionPane.ERROR_MESSAGE);
+            }    
+        }else{
+            try {
             if(banco.inserir(aluno)){
                 JOptionPane.showMessageDialog(this.getContentPane(), "Aluno inserido");
                 //limparCampos();
@@ -482,6 +486,8 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
         
         //Exibção dos erros pelas Janelas
         if(errosEntrada.size() > 0){
@@ -489,8 +495,6 @@ public class TelaInserirAluno extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this.getContentPane(), errosEntrada.get(i), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
-        else
-            System.out.println("Não houve erros de entrada");
         
     }//GEN-LAST:event_salvarButtonActionPerformed
     

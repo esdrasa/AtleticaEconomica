@@ -91,8 +91,8 @@ public class AtleticaMembershipCard
         
         //Gera uma string com a data de nascimento formatada
         String studentNascimento = student.getNascimento(true).substring(0, 2) 
-                                   + "\\" + student.getNascimento(true).substring(2, 5)
-                                   + "\\" + student.getNascimento(true).substring(5);
+                                   + "/" + student.getNascimento(true).substring(2, 4)
+                                   + "/" + student.getNascimento(true).substring(4);
         
         //Separa as alergias/doenças/medicações por vírgulas
         String[] allergies = student.getAlergia(true).split("\\s*,\\s*");
