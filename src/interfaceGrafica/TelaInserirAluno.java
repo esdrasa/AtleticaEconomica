@@ -493,14 +493,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
-        
-        
-        //Exibção dos erros pelas Janelas
-        if(errosEntrada.size() > 0){
-            for (int i = 0; i < errosEntrada.size(); i++) {
-                JOptionPane.showMessageDialog(this.getContentPane(), errosEntrada.get(i), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+       
         
     }//GEN-LAST:event_salvarButtonActionPerformed
     
