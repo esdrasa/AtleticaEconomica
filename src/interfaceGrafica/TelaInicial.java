@@ -7,6 +7,7 @@ package interfaceGrafica;
 
 import banco_de_dados.BancoPopular;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -45,6 +46,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        gerarAllButton = new javax.swing.JButton();
+        gerarTxtButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Atletica de Economia Card Maker");
@@ -86,19 +89,26 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel3.setText("Copyright © 2017 - Desingned and Developed by Antero Antunes and Ayres");
 
+        gerarAllButton.setText("Gerar todas carteirinhas");
+        gerarAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarAllButtonActionPerformed(evt);
+            }
+        });
+
+        gerarTxtButton.setText("Gerar txt");
+        gerarTxtButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarTxtButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(removerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inserirButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(gerarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,18 +117,24 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel3)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gerarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gerarAllButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gerarTxtButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inserirButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buscarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(33, 33, 33))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buscarButton, gerarButton, inserirButton, removerButton});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inserirButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buscarButton)
@@ -126,7 +142,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(removerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gerarButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gerarAllButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gerarTxtButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
@@ -208,6 +228,28 @@ public class TelaInicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_gerarButtonActionPerformed
 
+    private void gerarAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarAllButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            ArrayList<Aluno> alunos = banco.getAlunos();
+            AtleticaMembershipCard gerador = new AtleticaMembershipCard();
+            for(Aluno aluno : alunos){
+                gerador.generateID(aluno);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gerarAllButtonActionPerformed
+
+    private void gerarTxtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarTxtButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            banco.gerarTxt();
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gerarTxtButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,7 +292,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
+    private javax.swing.JButton gerarAllButton;
     private javax.swing.JButton gerarButton;
+    private javax.swing.JButton gerarTxtButton;
     private javax.swing.JButton inserirButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
