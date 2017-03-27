@@ -141,7 +141,36 @@ public class BancoPopular {
             writer.write(aluno.getNascimento(true).substring(0, 2) 
                                    + "/" + aluno.getNascimento(true).substring(2, 4)
                                    + "/" + aluno.getNascimento(true).substring(4) + '\t');
+            switch(aluno.getSexo()){
+                case 0:
+                    writer.write("M" + '\t');
+                    break;
+                case 1:
+                    writer.write("F" + '\t');
+                    break;
+            }
             
+            switch(aluno.getVinculo()){
+                case 0:
+                    writer.write("ASSOCIADO" + '\t');
+                    break;
+                case 1:
+                    writer.write("ATLETA" + '\t');
+                    break;
+                case 2:
+                    writer.write("ATLETA ASSOCIADO" + '\t');
+                    break;
+            }
+            
+            writer.write(aluno.getTelefone(true) + '\t');
+            writer.write(aluno.getCelular(true) + '\t');
+            writer.write(aluno.getEmail(true) + '\t');
+            writer.write(aluno.getEndereco(true) + '\t');
+            writer.write(aluno.getRh(true) + '\t');
+            writer.write(aluno.getDoença(true) + '\t');
+            writer.write(aluno.getAlergia(true) + '\t');
+            writer.write(aluno.getMedicacao(true) + '\t');
+            writer.write(aluno.getEmergencia(true) + '\t');
             
             writer.newLine();
         }
