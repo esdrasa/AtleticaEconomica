@@ -89,18 +89,23 @@ public class AtleticaMembershipCard
                             +   "-"
                             +   studentCPFNoFormat.substring(9);
         
+        //Gera uma string com a data de nascimento formatada
+        String studentNascimento = student.getNascimento(true).substring(0, 2) 
+                                   + "/" + student.getNascimento(true).substring(2, 4)
+                                   + "/" + student.getNascimento(true).substring(4);
+        
         //Separa as alergias/doenças/medicações por vírgulas
-        String[] allergies = student.getAlergia().split("\\s*,\\s*");
-        String[] diseases = student.getDoença().split("\\s*,\\s*");
-        String[] medications = student.getMedicacao().split("\\s*,\\s*");
+        String[] allergies = student.getAlergia(true).split("\\s*,\\s*");
+        String[] diseases = student.getDoença(true).split("\\s*,\\s*");
+        String[] medications = student.getMedicacao(true).split("\\s*,\\s*");
         //alergias, doenças e medicações em uma array de String
         String[] all_dis_med = concatAll(allergies, diseases, medications);
         
         //Correção no eixo Y para se adequar à altura da fonte
         int yCorrection = fontMetrics.getHeight() / 2;
         
-        g2d.drawString(student.getNome(), NAME_X, yCorrection + NAME_Y);
-        g2d.drawString(student.getNascimento(), BDAY_X, yCorrection + BDAY_Y);
+        g2d.drawString(student.getNome(true), NAME_X, yCorrection + NAME_Y);
+        g2d.drawString(studentNascimento, BDAY_X, yCorrection + BDAY_Y);
         g2d.drawString(studentSex, SEX_X, yCorrection + SEX_Y);
         g2d.drawString(studentCPF, CPF_X, yCorrection + CPF_Y);
         g2d.drawString(studentAssociation, ASSOC_X, yCorrection + ASSOC_Y);
@@ -115,7 +120,7 @@ public class AtleticaMembershipCard
         // A correção em Y precisa ser atualizada, já que a altura da fonte foi alterada
         yCorrection = fontMetrics.getHeight() / 2;
         
-        g2d.drawString(student.getRh(), RH_X, yCorrection + RH_Y);
+        g2d.drawString(student.getRh(true), RH_X, yCorrection + RH_Y);
         
         // Posição inicial para as strings de alergias/doenças/medicações
         int x = MED_X, y = MED_Y;
@@ -150,7 +155,7 @@ public class AtleticaMembershipCard
         //O tamanho da fonte é restaurado
         setFontSize(temp);
         //A carteirinha é salva como pdf com o nome do estudante + seu CPF para desambiguação
-        saveAsPDF(student.getNome().replace(' ', '-') + '_' +studentCPFNoFormat + ".pdf");
+        saveAsPDF(student.getNome(true).replace(' ', '-') + '_' +studentCPFNoFormat + ".pdf");
     
         dispose();
     }

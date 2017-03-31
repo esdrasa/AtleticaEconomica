@@ -5,9 +5,12 @@
  */
 package banco_de_dados;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import modelo.Aluno;
 import tabelaDispersao.Hashtable;
 import tabelaDispersao.Item;
@@ -26,13 +29,11 @@ public class BancoPopular {
         hash = new Hashtable(60);
         arquibin = new myRandomAccessFile(arquivo, "rw");
         
-        System.out.println("Montando tabela de dispersão");
         while(arquibin.getFilePointer() < arquibin.length()){
             Item it = new Item(arquibin.readLong(), arquibin.getFilePointer() - 8);
             hash.inserir(it);
-            arquibin.skipBytes(768);
+            arquibin.skipBytes(868);
         }
-        System.out.println("Tabela dispersão montada");
     }
     
     public Aluno buscar(long matricula) throws IOException{
@@ -43,10 +44,21 @@ public class BancoPopular {
         } else{
             return null;
         }
+        
+    }
+    
+    /*Retorna a posicao do aluno no arquivo*/
+    public long buscarPosicao(long matricula) throws IOException{
+        Item item = hash.buscar(matricula);
+        if(item != null){
+            return item.getPosicao();
+        } else{
+            return -1;
+        }
     }
     
     public boolean inserir(Aluno aluno) throws IOException{
-        System.out.println("T1");
+       System.out.println("T1");
        Item item = hash.buscar(aluno.getMatricula());
        System.out.println("T2");
         if(item == null){
@@ -54,6 +66,7 @@ public class BancoPopular {
             arquibin.seek(arquibin.length());
             System.out.println("T4");
             arquibin.writeAluno(aluno);
+            hash.inserir(new Item(aluno.getMatricula(), arquibin.length() -  876));
             return true;
         } else{
             System.out.println("T3.1");
@@ -61,21 +74,108 @@ public class BancoPopular {
         } 
     }
     
+    public void inserir(Aluno aluno, long posicao) throws IOException{
+        arquibin.seek(posicao);
+        arquibin.writeAluno(aluno);
+    }
+    
     public boolean remover(long matricula) throws IOException{
         Item item = hash.buscar(matricula);
         if(item != null){
-            arquibin.seek(arquibin.length() - 776);         
-            Aluno aluno = arquibin.readAluno();
-            
-            arquibin.seek(item.getPosicao());
-            arquibin.writeAluno(aluno);
-            
-            item = hash.buscar(aluno.getMatricula());
-            item.setPosicao(arquibin.getFilePointer() - 776);
-            
+            hash.remover(item.getMatricula());
+            if(arquibin.length() == 876){
+            /*So tem 1 elemento no arquivo*/
+                arquibin.setLength(0);
+            }else if(item.getPosicao() == arquibin.length() - 876){
+            /*O elemento é o ultimo*/
+                arquibin.setLength(arquibin.length() - 876);
+            }else{
+                arquibin.seek(arquibin.length() - 876);         
+                Aluno aluno = arquibin.readAluno();
+
+                arquibin.seek(item.getPosicao());
+                arquibin.writeAluno(aluno);
+
+                item = hash.buscar(aluno.getMatricula());
+                item.setPosicao(arquibin.getFilePointer() - 876);
+            }
             return true;
         }else{
             return false;
         }
+    }
+    
+    public ArrayList<Aluno> getAlunos() throws IOException{
+        ArrayList<Aluno> alunos = new ArrayList();
+        Aluno aluno;
+        
+        arquibin.seek(0);
+        while(arquibin.getFilePointer() < arquibin.length()){
+            aluno = arquibin.readAluno();
+            alunos.add(aluno);
+        }
+        
+        return alunos;
+    }
+    
+    public void gerarTxt() throws IOException{
+        ArrayList<Aluno> alunos = this.getAlunos();
+        
+        File file = new File("texto.txt");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter writer = new BufferedWriter(fw);
+        
+        
+        for(Aluno aluno: alunos){
+            writer.write(aluno.getNome(true) + '\t');
+            writer.write(Long.toString(aluno.getMatricula()) + '\t');
+            String studentCPFNoFormat = Long.toString(aluno.getCpf());
+            writer.write(studentCPFNoFormat.substring(0, 3)
+                            +   "."
+                            +   studentCPFNoFormat.substring(3, 6)
+                            +   "."
+                            +   studentCPFNoFormat.substring(6, 9)
+                            +   "-"
+                            +   studentCPFNoFormat.substring(9) + '\t');
+            
+            writer.write(aluno.getNascimento(true).substring(0, 2) 
+                                   + "/" + aluno.getNascimento(true).substring(2, 4)
+                                   + "/" + aluno.getNascimento(true).substring(4) + '\t');
+            switch(aluno.getSexo()){
+                case 0:
+                    writer.write("M" + '\t');
+                    break;
+                case 1:
+                    writer.write("F" + '\t');
+                    break;
+            }
+            
+            switch(aluno.getVinculo()){
+                case 0:
+                    writer.write("ASSOCIADO" + '\t');
+                    break;
+                case 1:
+                    writer.write("ATLETA" + '\t');
+                    break;
+                case 2:
+                    writer.write("ATLETA ASSOCIADO" + '\t');
+                    break;
+            }
+            
+            writer.write(aluno.getTelefone(true) + '\t');
+            writer.write(aluno.getCelular(true) + '\t');
+            writer.write(aluno.getEmail(true) + '\t');
+            writer.write(aluno.getEndereco(true) + '\t');
+            writer.write(aluno.getRh(true) + '\t');
+            writer.write(aluno.getDoença(true) + '\t');
+            writer.write(aluno.getAlergia(true) + '\t');
+            writer.write(aluno.getMedicacao(true) + '\t');
+            writer.write(aluno.getEmergencia(true) + '\t');
+            
+            writer.newLine();
+        }
+        
+        writer.close();
+        fw.close();
     }
 }

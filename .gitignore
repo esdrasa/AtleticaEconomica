@@ -1,6 +1,8 @@
 .gitignore
 database
 nbproject/private/private.xml
+texto*
 
 
 
+/dist/

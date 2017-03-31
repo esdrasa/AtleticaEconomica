@@ -8,8 +8,10 @@ package interfaceGrafica;
 import banco_de_dados.BancoPopular;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Aluno;
 
 /**
@@ -69,6 +71,9 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         voltarButton = new javax.swing.JButton();
         labelEmergencia = new javax.swing.JLabel();
         textFieldEmergencia = new javax.swing.JTextField();
+        limparButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +84,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             }
         });
 
-        labelNome.setText("Nome:");
+        labelNome.setText("*Nome:");
 
         textFieldCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +92,9 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             }
         });
 
-        labelCPF.setText("CPF:");
+        labelCPF.setText("*CPF:");
 
-        labelMatricula.setText("Matrícula:");
+        labelMatricula.setText("*Matrícula:");
 
         textFieldMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +126,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             }
         });
 
-        labelNascimento.setText("Data de nascimento:");
+        labelNascimento.setText("*Data de nascimento (DDMMAAAA):");
 
         textFieldNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,114 +214,147 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             }
         });
 
+        limparButton.setText("Limpar");
+        limparButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/3asm.png"))); // NOI18N
+
+        jLabel2.setText("*Preenchimento obrigatório");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(salvarButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(voltarButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelMedicacao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldMedicacao))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelEmergencia)
+                                        .addComponent(labelMedicacao)
+                                        .addComponent(labelAlergia))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(textFieldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(26, 26, 26)
+                                            .addComponent(labelDoenca)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(textFieldDoenca))
+                                        .addComponent(textFieldMedicacao, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(textFieldEmergencia, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelEndereco)
+                                        .addComponent(labelEmail))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(textFieldEndereco)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labelCelular)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(textFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelMatricula)
-                                    .addComponent(labelNome)
-                                    .addComponent(labelSexo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelVinculo)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labelRH)
-                                                .addGap(16, 16, 16)
-                                                .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labelCPF)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelNascimento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(comboBoxVinculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(293, 293, 293)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(labelTelefone)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(labelCelular)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(labelEmail)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(labelEndereco)
+                                .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelMatricula)
+                                        .addComponent(labelNome)
+                                        .addComponent(labelSexo))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAlergia)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelDoenca)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelVinculo)
-                                .addGap(16, 16, 16)
-                                .addComponent(comboBoxVinculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelEmergencia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldEmergencia)))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(textFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(labelRH)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(labelCPF)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelNascimento)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(17, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(limparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNome)
-                    .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelMatricula)
-                    .addComponent(textFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCPF)
-                    .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSexo)
-                    .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelRH)
-                    .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNome)
+                            .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelMatricula)
+                            .addComponent(textFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCPF)
+                            .addComponent(textFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelSexo)
+                            .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelRH)
+                            .addComponent(comboBoxRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNascimento)
+                            .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNascimento)
-                    .addComponent(textFieldNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefone)
+                    .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCelular)
-                    .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCelular))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmail)
@@ -329,8 +367,8 @@ public class TelaInserirAluno extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAlergia)
                     .addComponent(textFieldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelDoenca)
-                    .addComponent(textFieldDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDoenca))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMedicacao)
@@ -339,15 +377,18 @@ public class TelaInserirAluno extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmergencia)
                     .addComponent(textFieldEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelVinculo)
                     .addComponent(comboBoxVinculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvarButton)
-                    .addComponent(voltarButton))
-                .addContainerGap())
+                    .addComponent(voltarButton)
+                    .addComponent(limparButton))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -356,10 +397,22 @@ public class TelaInserirAluno extends javax.swing.JFrame {
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("lendo o aluno");
+        int flag = 0;
         Aluno aluno = new Aluno();
         aluno.setNome(textFieldNome.getText());
-        aluno.setMatricula(Long.parseLong(textFieldMatricula.getText()));
-        aluno.setCpf(Long.parseLong(textFieldCPF.getText()));
+        try {
+            aluno.setMatricula(Long.parseLong(textFieldMatricula.getText()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this.getContentPane(), "Campo Matrícula Obrigatório", "Erro", JOptionPane.ERROR_MESSAGE);
+            flag = 1;
+        }
+        try {
+            aluno.setCpf(Long.parseLong(textFieldCPF.getText()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this.getContentPane(), "Campo CPF Obrigatório", "Erro", JOptionPane.ERROR_MESSAGE);
+            flag = 1;
+        }
+        
         aluno.setCelular(textFieldCelular.getText());
         aluno.setTelefone(textFieldTelefone.getText());
         aluno.setNascimento(textFieldNascimento.getText());
@@ -402,23 +455,120 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         
         aluno.setSexo((short)comboBoxSexo.getSelectedIndex());
         aluno.setVinculo((short)comboBoxVinculo.getSelectedIndex());
-        System.out.println("li o aluno");
+        aluno.exibirImportante();
         
-        try {
+        //Tratamento  de erros do limite do campo excedido
+        ArrayList<String> errosEntrada  = new ArrayList<>();
+        
+        if (textFieldNome.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Nome excedido!");
+        }
+        else if("".equals(textFieldNome.getText())){
+            errosEntrada.add("Campo Nome obrigatório!");
+        }
+        if(textFieldEmail.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Email excedido!");
+        }
+        if(textFieldEmergencia.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Emergência excedido!");
+        }
+        if(textFieldEndereco.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Endereço excedido!");
+        }
+        if(textFieldAlergia.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Alergia excedido!");
+        }
+        if(textFieldMedicacao.getText().length() > 50){
+            errosEntrada.add("Tamanho máximo do campo Medicação excedido!");
+        }
+        if(textFieldCelular.getText().length() > 9){
+            errosEntrada.add("Tamanho máximo do campo Celular excedido!");
+        }
+        if(textFieldTelefone.getText().length() > 8){
+            errosEntrada.add("Tamanho máximo do campo Telefone excedido!");
+        }
+        if(textFieldNascimento.getText().length() != 8){
+            errosEntrada.add("Data de Nascimento inválida");
+        }
+        else if(textFieldNascimento.getText() == null){
+            errosEntrada.add("Campo Data de Nascimento obrigatório!");
+        }
+        if(textFieldDoenca.getText().length() > 60){
+            errosEntrada.add("Tamanho máximo do campo Doença excedido!");
+        }
+        if(textFieldMatricula.getText().length() != 10){
+            errosEntrada.add("Matrícula inválida!");
+        }
+        if(textFieldCPF.getText().length() != 11){
+            errosEntrada.add("CPF inválido!");
+        }
+        
+        /*//Tratamento de Campos não preenchidos     
+        if(textFieldEmail.getText() == null){
+            textFieldEmail.setText("");
+        }
+        if(textFieldEmergencia.getText() == null){
+            textFieldEmergencia.setText("");
+        }
+        if(textFieldEndereco.getText() == null){
+            textFieldEndereco.setText("");
+        }
+        if(textFieldAlergia.getText() == null){
+            textFieldAlergia.setText("");
+        }
+        if(textFieldMedicacao.getText() == null){
+            textFieldMedicacao.setText("");
+        }
+        if(textFieldCelular.getText() == null){
+            textFieldCelular.setText("");
+        }
+        if(textFieldTelefone.getText() == null){
+            textFieldTelefone.setText("");
+        }
+        if(textFieldDoenca.getText() == null){
+            textFieldDoenca.setText("");
+        }*/
+        
+        //Exibção de Erros e Inserção no Banco
+        if(errosEntrada.size() > 0 && flag == 0){
+            for (int i = 0; i < errosEntrada.size(); i++) {
+                JOptionPane.showMessageDialog(this.getContentPane(), errosEntrada.get(i), "Erro", JOptionPane.ERROR_MESSAGE);
+            }    
+        }
+        else if(errosEntrada.isEmpty()){
+            try {
             if(banco.inserir(aluno)){
-                System.out.println("Inseri");
+                JOptionPane.showMessageDialog(this.getContentPane(), "Aluno inserido");
+                //limparCampos();
             }else{
-                System.out.println("Usuario ja está no banco");
+                JOptionPane.showMessageDialog(this.getContentPane(), "Usuario ja está no banco de dados");
             }
             
             /*Caso tenha inserido avisar que foi inserido e voltar pro menu principal, caso contrario avisa que ja existe*/
         } catch (IOException ex) {
             Logger.getLogger(TelaInserirAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
         
+        
+       //NumberFormatException
         
     }//GEN-LAST:event_salvarButtonActionPerformed
-
+    
+    private void limparCampos(){
+        textFieldAlergia.setText("");
+        textFieldCPF.setText("");
+        textFieldCelular.setText("");
+        textFieldDoenca.setText("");
+        textFieldEmail.setText("");
+        textFieldEmergencia.setText("");
+        textFieldEndereco.setText("");
+        textFieldMatricula.setText("");
+        textFieldMedicacao.setText("");
+        textFieldNascimento.setText("");
+        textFieldNome.setText("");
+        textFieldTelefone.setText("");
+    }
     private void textFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldCPFActionPerformed
@@ -485,6 +635,10 @@ public class TelaInserirAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldEmergenciaActionPerformed
 
+    private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparButtonActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_limparButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -493,6 +647,8 @@ public class TelaInserirAluno extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxRH;
     private javax.swing.JComboBox<String> comboBoxSexo;
     private javax.swing.JComboBox<String> comboBoxVinculo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelAlergia;
     private javax.swing.JLabel labelCPF;
     private javax.swing.JLabel labelCelular;
@@ -508,6 +664,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
     private javax.swing.JLabel labelSexo;
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JLabel labelVinculo;
+    private javax.swing.JButton limparButton;
     private javax.swing.JButton salvarButton;
     private javax.swing.JTextField textFieldAlergia;
     private javax.swing.JTextField textFieldCPF;
