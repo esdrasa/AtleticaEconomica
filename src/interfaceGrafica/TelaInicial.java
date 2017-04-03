@@ -52,21 +52,21 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Atletica de Economia Card Maker");
 
-        inserirButton.setText("Inserir Aluno");
+        inserirButton.setText("Inserir aluno");
         inserirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inserirButtonActionPerformed(evt);
             }
         });
 
-        buscarButton.setText("Busca Aluno");
+        buscarButton.setText("Buscar aluno");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButtonActionPerformed(evt);
             }
         });
 
-        removerButton.setText("Remover Aluno");
+        removerButton.setText("Remover aluno");
         removerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removerButtonActionPerformed(evt);
@@ -239,6 +239,7 @@ public class TelaInicial extends javax.swing.JFrame {
             for(Aluno aluno : alunos){
                 gerador.generateID(aluno);
             }
+            JOptionPane.showMessageDialog(this.getContentPane(), "Carteirinhas geradas");
         } catch (IOException ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }

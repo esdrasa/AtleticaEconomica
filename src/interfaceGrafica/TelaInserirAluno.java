@@ -539,7 +539,7 @@ public class TelaInserirAluno extends javax.swing.JFrame {
             try {
             if(banco.inserir(aluno)){
                 JOptionPane.showMessageDialog(this.getContentPane(), "Aluno inserido");
-                //limparCampos();
+                limparCampos();
             }else{
                 JOptionPane.showMessageDialog(this.getContentPane(), "Usuario ja está no banco de dados");
             }

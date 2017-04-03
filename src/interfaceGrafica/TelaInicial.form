@@ -88,7 +88,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="inserirButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Inserir Aluno"/>
+        <Property name="text" type="java.lang.String" value="Inserir aluno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inserirButtonActionPerformed"/>
@@ -96,7 +96,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buscarButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Busca Aluno"/>
+        <Property name="text" type="java.lang.String" value="Buscar aluno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarButtonActionPerformed"/>
@@ -104,7 +104,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="removerButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Remover Aluno"/>
+        <Property name="text" type="java.lang.String" value="Remover aluno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerButtonActionPerformed"/>
